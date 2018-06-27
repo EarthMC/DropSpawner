@@ -1,0 +1,9 @@
+name: DropSpawner
+version: 0.0.1
+author: Karl Essinger (KarlofDuty)
+website: http://karlofduty.com
+main: com.karlofduty.dropspawner.DropSpawner
+permissions:
+  dropspawner.allowdrop:
+    description: Lets a player use the plugin. Given by default.
+    default: true
