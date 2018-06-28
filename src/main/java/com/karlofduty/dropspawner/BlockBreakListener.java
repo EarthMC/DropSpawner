@@ -45,14 +45,20 @@ public class BlockBreakListener implements Listener
             return;
         }
 
-        CreatureSpawner spawner = (CreatureSpawner) event.getBlock(); //Get the Spawner itself and cast it to its class
-        EntityType spawnerType = spawner.getSpawnedType(); //Get the Entity Type that the Spawner was spawning
-
-        SpawnEgg mobEggToSpawn = new SpawnEgg();
-        mobEggToSpawn.setSpawnedType(spawnerType);
+        event.setExpToDrop(0);
 
         event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.MOB_SPAWNER, 1));
-        event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), mobEggToSpawn.toItemStack());
+
+        CreatureSpawner spawner = (CreatureSpawner) event.getBlock().getState();
+        EntityType spawnerType = spawner.getSpawnedType();
+        if(!spawnerType.equals(EntityType.UNKNOWN) && !spawnerType.equals(EntityType.PIG))
+        {
+            ItemStack mobEggToSpawn = new ItemStack(Material.MONSTER_EGG, 1, spawnerType.getTypeId());
+            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), mobEggToSpawn);
+        }
+
+        event.getBlock().setType(Material.AIR);
+        event.setCancelled(true);
     }
     private boolean isPickaxe(Material material)
     {
