@@ -5,13 +5,14 @@ import org.bukkit.block.CreatureSpawner;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class BlockBreakListener implements Listener
 {
-    @EventHandler
+    @EventHandler (priority = EventPriority.HIGH)
     public void onBlockBreak(BlockBreakEvent event)
     {
         //Abort if not mob spawner
