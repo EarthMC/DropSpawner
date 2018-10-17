@@ -1,5 +1,7 @@
 # DropSpawner
 
+**1.13 version coming when new documentation for Spigot 1.13 features comes out.**
+
 Makes spawners drop when destroyed, simple.
 
 All other plugins I've found that does this use their own usually buggy ways of setting spawner types. This plugin uses the native spigot functions to accomplish the same although this means only mobs that existed before 1.9 will work. This does however include all mobs from naturally generated spawners and a whole bunch more.
