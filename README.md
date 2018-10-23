@@ -10,15 +10,14 @@ The other difference with this plugin is that it just does what it says it does,
 
 By default the plugin will only drop spawners if the user is using a pickaxe with silk touch but this can be changed in the config.
 
-## Config Options:
+## Config Options
 
 | Variable             | Default Value    | Description                                                                        |
 | :------------------- |:-----------------| :----------------------------------------------------------------------------------|
 | `require-pickaxe`    | `true`           | True if the player needs to use a pickaxe to get the drop from the spawner.        |
 | `require-silktouch`  | `true`           | True if the player needs the silk touch enchantment to get drops from the spawner. |
 
-
-## Permissions:
+## Permissions
 
 | Node                       | Default Value    | Description                                                                        |
 | :--------------------------|:-----------------| :----------------------------------------------------------------------------------|
