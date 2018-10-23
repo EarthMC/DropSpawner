@@ -67,22 +67,7 @@ public class BlockBreakListener implements Listener
     }
     private boolean isPickaxe(Material material)
     {
-        if(material.equals(Material.DIAMOND_PICKAXE))
-        {
-            return true;
-        }
-        if(material.equals(Material.IRON_PICKAXE))
-        {
-            return true;
-        }
-        if(material.equals(Material.STONE_PICKAXE))
-        {
-            return true;
-        }
-        if(material.equals(Material.WOOD_PICKAXE))
-        {
-            return true;
-        }
-        return false;
+        return (material.equals(Material.DIAMOND_PICKAXE) || material.equals(Material.IRON_PICKAXE) 
+        || material.equals(Material.STONE_PICKAXE) || material.equals(Material.WOOD_PICKAXE));
     }
 }
