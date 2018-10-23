@@ -21,7 +21,7 @@ public class DropSpawner extends JavaPlugin
     @Override
     public void onDisable()
     {
-
+        // Nothing for now
     }
 
     public static DropSpawner getInstance() {
