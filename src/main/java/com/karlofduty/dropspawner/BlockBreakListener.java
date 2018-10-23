@@ -15,14 +15,8 @@ public class BlockBreakListener implements Listener
     @EventHandler (priority = EventPriority.HIGH)
     public void onBlockBreak(BlockBreakEvent event)
     {
-        //Abort if not mob spawner
-        if(!event.getBlock().getType().equals(Material.MOB_SPAWNER))
-        {
-            return;
-        }
-
-        //Abort if cancelled
-        if (event.isCancelled())
+        //Abort if not mob spawner or event is cancelled
+        if(!event.getBlock().getType().equals(Material.MOB_SPAWNER) || event.isCancelled())
         {
             return;
         }
