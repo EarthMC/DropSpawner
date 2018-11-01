@@ -5,23 +5,18 @@ import org.bukkit.block.CreatureSpawner;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class BlockBreakListener implements Listener
 {
-    @EventHandler
+    @EventHandler (priority = EventPriority.HIGH)
     public void onBlockBreak(BlockBreakEvent event)
     {
-        //Abort if not mob spawner
-        if(!event.getBlock().getType().equals(Material.SPAWNER))
-        {
-            return;
-        }
-
-        //Abort if cancelled
-        if (event.isCancelled())
+        //Abort if not mob spawner or event is cancelled
+        if(!event.getBlock().getType().equals(Material.MOB_SPAWNER) || event.isCancelled())
         {
             return;
         }
@@ -66,22 +61,7 @@ public class BlockBreakListener implements Listener
     }
     private boolean isPickaxe(Material material)
     {
-        if(material.equals(Material.DIAMOND_PICKAXE))
-        {
-            return true;
-        }
-        if(material.equals(Material.IRON_PICKAXE))
-        {
-            return true;
-        }
-        if(material.equals(Material.STONE_PICKAXE))
-        {
-            return true;
-        }
-        if(material.equals(Material.WOODEN_PICKAXE))
-        {
-            return true;
-        }
-        return false;
+        return (material.equals(Material.DIAMOND_PICKAXE) || material.equals(Material.IRON_PICKAXE) 
+        || material.equals(Material.STONE_PICKAXE) || material.equals(Material.WOODEN_PICKAXE));
     }
 }
