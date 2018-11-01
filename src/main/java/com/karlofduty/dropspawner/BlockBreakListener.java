@@ -15,7 +15,7 @@ public class BlockBreakListener implements Listener
     public void onBlockBreak(BlockBreakEvent event)
     {
         //Abort if not mob spawner
-        if(!event.getBlock().getType().equals(Material.MOB_SPAWNER))
+        if(!event.getBlock().getType().equals(Material.SPAWNER))
         {
             return;
         }
@@ -49,14 +49,14 @@ public class BlockBreakListener implements Listener
 
         event.setExpToDrop(0);
 
-        event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.MOB_SPAWNER, 1));
+        event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.SPAWNER, 1));
         DropSpawner.log(event.getPlayer().getName() + " broke a spawner succesfully.");
 
         CreatureSpawner spawner = (CreatureSpawner) event.getBlock().getState();
         EntityType spawnerType = spawner.getSpawnedType();
         if(!spawnerType.equals(EntityType.UNKNOWN) && !spawnerType.equals(EntityType.PIG))
         {
-            ItemStack mobEggToSpawn = new ItemStack(Material.MONSTER_EGG, 1, spawnerType.getTypeId());
+            ItemStack mobEggToSpawn = new ItemStack(Material.valueOf(spawnerType.toString() + "_SPAWN_EGG"), 1);
             event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), mobEggToSpawn);
             DropSpawner.log(event.getPlayer().getName() + " got a spawn egg.");
         }
@@ -78,7 +78,7 @@ public class BlockBreakListener implements Listener
         {
             return true;
         }
-        if(material.equals(Material.WOOD_PICKAXE))
+        if(material.equals(Material.WOODEN_PICKAXE))
         {
             return true;
         }
