@@ -1,5 +1,6 @@
 name: DropSpawner
-version: 1.0.2
+version: 1.0.3
+api-version: 1.13
 author: Karl Essinger (KarlofDuty)
 website: http://karlofduty.com
 main: com.karlofduty.dropspawner.DropSpawner
