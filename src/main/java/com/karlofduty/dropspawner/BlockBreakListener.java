@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class BlockBreakListener implements Listener
 {
-    @EventHandler (priority = EventPriority.HIGH)
+    @EventHandler (priority = EventPriority.HIGHEST)
     public void onBlockBreak(BlockBreakEvent event)
     {
         //Abort if not mob spawner or event is cancelled
