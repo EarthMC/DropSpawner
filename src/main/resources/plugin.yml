@@ -1,8 +1,8 @@
 name: DropSpawner
 version: 1.0.4
 api-version: 1.13
-author: Karl Essinger (KarlofDuty)
-website: http://karlofduty.com
+author: creatorfromhell, KarlofDuty
+website: https://earthmc.net
 main: com.karlofduty.dropspawner.DropSpawner
 permissions:
   dropspawner.allowdrop:
