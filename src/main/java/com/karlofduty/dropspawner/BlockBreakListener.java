@@ -1,5 +1,6 @@
 package com.karlofduty.dropspawner;
 
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.enchantments.Enchantment;
@@ -21,28 +22,30 @@ public class BlockBreakListener implements Listener
             return;
         }
 
+        if (event.getPlayer().getGameMode().equals(GameMode.CREATIVE)) {
+            DropSpawner.log(event.getPlayer().getName() + " broke a spawner but was in creative mode.");
+            return;
+        }
+
         //Abort if not the required tool
-        if(DropSpawner.config.getBoolean("require-pickaxe") && !isPickaxe(event.getPlayer().getItemInHand().getType()))
+        if(DropSpawner.config.getBoolean("require-pickaxe") && !isPickaxe(event.getPlayer().getInventory().getItemInMainHand().getType()))
         {
-            DropSpawner.log(event.getPlayer().getName() + " broke a spawner but did not use a pickaxe.");
+            DropSpawner.log(event.getPlayer().getName() + " broke a spawner, but did not use a pickaxe.");
             return;
         }
 
         //Abort if not the required enchant
-        if(DropSpawner.config.getBoolean("require-silktouch") && !event.getPlayer().getItemInHand().containsEnchantment(Enchantment.SILK_TOUCH))
-        {
-            DropSpawner.log(event.getPlayer().getName() + " broke a spawner but did not use silk touch.");
+        if (DropSpawner.config.getBoolean("require-silktouch") && !event.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH)) {
+            DropSpawner.log(event.getPlayer().getName() + " broke a spawner, but did not use silk touch.");
             return;
         }
 
         // Abort if the player does not have permission to get spawner drops
         if(!event.getPlayer().hasPermission("dropspawner.allowdrop"))
         {
-            DropSpawner.log(event.getPlayer().getName() + " broke a spawner but did not have permission to drop it.");
+            DropSpawner.log(event.getPlayer().getName() + " broke a spawner, but did not have permission to drop it.");
             return;
         }
-
-        event.setExpToDrop(0);
 
         event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.SPAWNER, 1));
         DropSpawner.log(event.getPlayer().getName() + " broke a spawner succesfully.");
@@ -59,9 +62,16 @@ public class BlockBreakListener implements Listener
         event.getBlock().setType(Material.AIR);
         event.setCancelled(true);
     }
-    private boolean isPickaxe(Material material)
-    {
-        return (material.equals(Material.DIAMOND_PICKAXE) || material.equals(Material.IRON_PICKAXE) 
-        || material.equals(Material.STONE_PICKAXE) || material.equals(Material.WOODEN_PICKAXE));
+    private boolean isPickaxe(Material material) {
+        switch(material) {
+            case WOODEN_PICKAXE:
+            case STONE_PICKAXE:
+            case IRON_PICKAXE:
+            case DIAMOND_PICKAXE:
+            case NETHERITE_PICKAXE:
+                return true;
+            default:
+                return false;
+        }
     }
 }
