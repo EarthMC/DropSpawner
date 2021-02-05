@@ -22,33 +22,34 @@ public class BlockBreakListener implements Listener
             return;
         }
 
+        String pluginPrefix = "[DropSpawner] ";
         if (event.getPlayer().getGameMode().equals(GameMode.CREATIVE)) {
-            DropSpawner.log(event.getPlayer().getName() + " broke a spawner but was in creative mode.");
+            DropSpawner.log(pluginPrefix + event.getPlayer().getName() + " broke a spawner but was in creative mode.");
             return;
         }
 
         //Abort if not the required tool
         if(DropSpawner.config.getBoolean("require-pickaxe") && !isPickaxe(event.getPlayer().getInventory().getItemInMainHand().getType()))
         {
-            DropSpawner.log(event.getPlayer().getName() + " broke a spawner, but did not use a pickaxe.");
+            DropSpawner.log(pluginPrefix + event.getPlayer().getName() + " broke a spawner, but did not use a pickaxe.");
             return;
         }
 
         //Abort if not the required enchant
         if (DropSpawner.config.getBoolean("require-silktouch") && !event.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH)) {
-            DropSpawner.log(event.getPlayer().getName() + " broke a spawner, but did not use silk touch.");
+            DropSpawner.log(pluginPrefix + event.getPlayer().getName() + " broke a spawner, but did not use silk touch.");
             return;
         }
 
         // Abort if the player does not have permission to get spawner drops
         if(!event.getPlayer().hasPermission("dropspawner.allowdrop"))
         {
-            DropSpawner.log(event.getPlayer().getName() + " broke a spawner, but did not have permission to drop it.");
+            DropSpawner.log(pluginPrefix + event.getPlayer().getName() + " broke a spawner, but did not have permission to drop it.");
             return;
         }
 
         event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.SPAWNER, 1));
-        DropSpawner.log(event.getPlayer().getName() + " broke a spawner succesfully.");
+        DropSpawner.log(pluginPrefix + event.getPlayer().getName() + " broke a spawner succesfully.");
 
         CreatureSpawner spawner = (CreatureSpawner) event.getBlock().getState();
         EntityType spawnerType = spawner.getSpawnedType();
