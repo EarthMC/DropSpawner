@@ -18,12 +18,6 @@ public class DropSpawner extends JavaPlugin
         getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
     }
 
-    @Override
-    public void onDisable()
-    {
-        // Nothing for now
-    }
-
     public static DropSpawner getInstance() {
         return instance;
     }
