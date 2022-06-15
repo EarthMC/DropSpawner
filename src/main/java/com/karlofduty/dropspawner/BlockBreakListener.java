@@ -66,6 +66,7 @@ public class BlockBreakListener implements Listener
             case WOODEN_PICKAXE:
             case STONE_PICKAXE:
             case IRON_PICKAXE:
+            case GOLDEN_PICKAXE:
             case DIAMOND_PICKAXE:
             case NETHERITE_PICKAXE:
                 return true;
