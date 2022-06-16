@@ -34,7 +34,7 @@ public class DropSpawner extends JavaPlugin
 
     public static void log(String message)
     {
-        instance.getServer().getLogger().info(message);
+        instance.getLogger().info(message);
     }
     public static void logColoured(String message)
     {
@@ -42,6 +42,6 @@ public class DropSpawner extends JavaPlugin
     }
     public static void logWarning(String message)
     {
-        instance.getServer().getLogger().warning(message);
+        instance.getLogger().warning(message);
     }
 }
