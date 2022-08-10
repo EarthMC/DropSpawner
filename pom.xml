@@ -5,8 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.karlofduty</groupId>
-    <artifactId>DropSpawner</artifactId>
-    <version>1.1.0</version>
+    <artifactId>dropspawner</artifactId>
+    <version>1.1.1</version>
+    <name>DropSpawner</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

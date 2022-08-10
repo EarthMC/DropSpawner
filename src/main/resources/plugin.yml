@@ -1,5 +1,5 @@
 name: DropSpawner
-version: 1.1.0
+version: ${project.version}
 api-version: 1.16
 author: creatorfromhell, KarlofDuty, Warriorrrr
 website: https://earthmc.net
