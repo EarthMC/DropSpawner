@@ -1,47 +1,19 @@
 package com.karlofduty.dropspawner;
-import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
 
-public class DropSpawner extends JavaPlugin
-{
-    public static FileConfiguration config;
-    private static DropSpawner instance;
+public final class DropSpawner extends JavaPlugin {
 
-    @Override
-    public void onEnable()
-    {
-        instance = this;
-        saveDefaultConfig();
-        config = this.getConfig();
-        getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
-    }
+	@Override
+	public void onLoad() {
+		getConfig().options().copyDefaults(true);
+		saveDefaultConfig();
+	}
 
-    public static DropSpawner getInstance() {
-        return instance;
-    }
+	@Override
+	public void onEnable() {
+		getServer().getPluginManager().registerEvents(new BlockBreakListener(this), this);
+	}
 
-    public static ConsoleCommandSender getConsole()
-    {
-        return instance.getServer().getConsoleSender();
-    }
-
-    public static void executeCommand(String command)
-    {
-        instance.getServer().dispatchCommand(getConsole(), command);
-    }
-
-    public static void log(String message)
-    {
-        instance.getLogger().info(message);
-    }
-    public static void logColoured(String message)
-    {
-        getConsole().sendMessage(message);
-    }
-    public static void logWarning(String message)
-    {
-        instance.getLogger().warning(message);
-    }
 }
