@@ -1,2 +1,4 @@
 require-pickaxe: true
 require-silktouch: true
+
+new-spawners-are-pig-type: true

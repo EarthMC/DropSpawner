@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class BlockBreakListener implements Listener
@@ -60,6 +61,17 @@ public class BlockBreakListener implements Listener
 
         event.setExpToDrop(0);
         event.setDropItems(false);
+    }
+
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
+    public void onSpawnerPlace(BlockPlaceEvent event) {
+        if (event.getBlock().getType() != Material.SPAWNER || !DropSpawner.config.getBoolean("new-spawners-are-pig-type", true))
+            return;
+
+        if (event.getBlock().getState() instanceof CreatureSpawner spawner) {
+            spawner.setSpawnedType(EntityType.PIG);
+            spawner.update();
+        }
     }
 
     private boolean isPickaxe(Material material) {
