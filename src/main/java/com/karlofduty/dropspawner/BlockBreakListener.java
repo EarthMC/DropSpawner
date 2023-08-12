@@ -52,8 +52,7 @@ public class BlockBreakListener implements Listener
 
         CreatureSpawner spawner = (CreatureSpawner) event.getBlock().getState();
         EntityType spawnerType = spawner.getSpawnedType();
-        if(!spawnerType.equals(EntityType.UNKNOWN) && !spawnerType.equals(EntityType.PIG))
-        {
+        if (spawnerType != null && !spawnerType.equals(EntityType.PIG)) {
             ItemStack mobEggToSpawn = new ItemStack(Material.valueOf(spawnerType + "_SPAWN_EGG"), 1);
             event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), mobEggToSpawn);
             DropSpawner.log(event.getPlayer().getName() + " got a spawn egg.");
