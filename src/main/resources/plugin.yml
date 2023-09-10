@@ -4,6 +4,8 @@ api-version: 1.16
 author: creatorfromhell, KarlofDuty, Warriorrrr
 website: https://earthmc.net
 main: com.karlofduty.dropspawner.DropSpawner
+folia-supported: true
+
 permissions:
   dropspawner.allowdrop:
     description: Lets a player use the plugin. Given by default.
